@@ -26,7 +26,7 @@ Response Body (Failed) :
 
 ```json
 {
-  "errors" : "Unauthorized"
+  "errors" : " "
 }
 ```
 
@@ -45,7 +45,8 @@ Response Body (Success) :
     "author": "James Clear",
     "publisher": "Gramedia Pustaka Utama",
     "isbn": "9786020667188",
-    "language": "Indonesia"
+    "language": "Indonesia",
+    "pages" : "200"
   }
 }
 ```
@@ -58,7 +59,7 @@ Response Body (Failed, 404) :
 }
 ```
 
-## Create/Insert new Book
+## Insert Book
 
 Endpoint : POST /api/books
 
@@ -71,7 +72,8 @@ Request Body :
   "author" : "James Clear",
   "publisher" : "Gramedia Pustaka Utama",
   "isbn" : "9786020667188",
-  "language" : "Indonesia"
+  "language" : "Indonesia",
+  "pages" : "200"
 }
 ```
 
@@ -86,7 +88,8 @@ Response Body (Success) :
     "author": "James Clear",
     "publisher": "Gramedia Pustaka Utama",
     "isbn": "9786020667188",
-    "language": "Indonesia"
+    "language": "Indonesia",
+    "pages" : "200"
   }
 }
 ```
@@ -95,7 +98,7 @@ Response Body (Failed) :
 
 ```json
 {
-  "errors" : "ISBN format invalid, publishYear invalid, ..."
+  "errors" : "title invalid, publishYear invalid, ..."
 }
 ```
 
@@ -112,7 +115,8 @@ Request Body :
   "author" : "James Clear",
   "publisher" : "Gramedia Pustaka Utama",
   "isbn" : "9786020667188",
-  "language" : "Indonesia"
+  "language" : "Indonesia",
+  "pages" : "200"
 }
 ```
 
@@ -127,7 +131,8 @@ Response Body (Success) :
     "author": "James Clear",
     "publisher": "Gramedia Pustaka Utama",
     "isbn": "9786020667188",
-    "language": "Indonesia"
+    "language": "Indonesia",
+    "pages" : "200"
   }
 }
 ```
@@ -136,7 +141,7 @@ Response Body (Failed) :
 
 ```json
 {
-  "errors" : "ISBN format invalid, publishYear invalid, ..."
+  "errors" : "title invalid, publishYear invalid, Book is not found..."
 }
 ```
 
@@ -156,6 +161,6 @@ Response Body (Failed) :
 
 ```json
 {
-  "errors" : "Contact is not found"
+  "errors" : "Book is not found"
 }
 ```
