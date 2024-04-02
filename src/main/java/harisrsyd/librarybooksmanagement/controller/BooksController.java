@@ -7,6 +7,9 @@ import harisrsyd.librarybooksmanagement.model.UpdateBookRequest;
 import harisrsyd.librarybooksmanagement.model.WebResponse;
 import harisrsyd.librarybooksmanagement.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,9 +44,12 @@ public class BooksController {
           path = "/api/books",
           produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public WebResponse<List<Books>> getAll() {
-    List<Books> books = booksService.getAll();
-    return WebResponse.<List<Books>>builder().data(books).build();
+  public Page<Books> getAll(@RequestParam(value = "page", defaultValue = "0") int page,
+                                         @RequestParam(value = "size", defaultValue = "3") int size)
+  {
+    Pageable pageable = PageRequest.of(page, size);
+    Page<Books> books = booksService.getAll(pageable);
+    return books;
   }
 
   @PutMapping(

@@ -6,6 +6,8 @@ import harisrsyd.librarybooksmanagement.model.InsertBookRequest;
 import harisrsyd.librarybooksmanagement.model.UpdateBookRequest;
 import harisrsyd.librarybooksmanagement.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,8 +62,8 @@ public class BooksService {
   }
 
   @Transactional(readOnly = true)
-  public List<Books> getAll() {
-    return booksRepository.findAll();
+  public Page<Books> getAll(Pageable pageable) {
+    return booksRepository.findAllPage(pageable);
   }
 
   public BooksResponse update(UpdateBookRequest request) {
