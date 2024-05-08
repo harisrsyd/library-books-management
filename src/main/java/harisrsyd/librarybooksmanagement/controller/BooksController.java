@@ -1,10 +1,7 @@
 package harisrsyd.librarybooksmanagement.controller;
 
 import harisrsyd.librarybooksmanagement.entity.Books;
-import harisrsyd.librarybooksmanagement.model.BooksResponse;
-import harisrsyd.librarybooksmanagement.model.InsertBookRequest;
-import harisrsyd.librarybooksmanagement.model.UpdateBookRequest;
-import harisrsyd.librarybooksmanagement.model.WebResponse;
+import harisrsyd.librarybooksmanagement.model.*;
 import harisrsyd.librarybooksmanagement.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,12 +41,18 @@ public class BooksController {
           path = "/api/books",
           produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public Page<Books> getAll(@RequestParam(value = "page", defaultValue = "0") int page,
-                                         @RequestParam(value = "size", defaultValue = "3") int size)
+  public WebResponse<List<BooksResponse>> getAll(@RequestParam(value = "page", defaultValue = "0") int page,
+                                         @RequestParam(value = "size", defaultValue = "5") int size)
   {
     Pageable pageable = PageRequest.of(page, size);
-    Page<Books> books = booksService.getAll(pageable);
-    return books;
+    Page<BooksResponse> booksResponses = booksService.getAll(pageable);
+    return WebResponse.<List<BooksResponse>>builder().data(booksResponses.getContent())
+            .paging(PagingResponse.builder()
+                    .currentPage(booksResponses.getNumber())
+                    .totalPage(booksResponses.getTotalPages())
+                    .size(booksResponses.getSize())
+                    .build())
+            .build();
   }
 
   @PutMapping(

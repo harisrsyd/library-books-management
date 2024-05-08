@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface BooksRepository extends JpaRepository<Books, Long> {
 
-  @Query(value = "select * from books", nativeQuery = true)
-  Page<Books> findAllPage(Pageable pageable);
+//  @Query(value = "select * from books", nativeQuery = true)
+//  Page<Books> findAllPage(Pageable pageable);
 }

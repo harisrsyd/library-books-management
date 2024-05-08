@@ -16,9 +16,18 @@ Response Body (Success) :
       "id": "long-identity",
       "title": "Atomic Habits",
       "publishYear": "2021",
-      "author": "James Clear"
+      "author": "James Clear",
+      "publisher": "Gramedia Pustaka Utama",
+      "isbn": "9786020667188",
+      "language": "Indonesia",
+      "pages" : "200"
     }
-  ]
+  ],
+  "paging": {
+    "currentPage": 0,
+    "totalPage": 2,
+    "size": 5
+  }
 }
 ```
 
